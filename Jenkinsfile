@@ -20,6 +20,13 @@ pipeline {
                 echo 'Testing completed'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker Image...'
+                sh 'docker build -t ram1uj/cicd-with-jenkins:latest .'
+                echo 'Docker Image Build completed'
+            }
+        }
         
     }
 }
