@@ -27,6 +27,16 @@ pipeline {
                 echo 'Docker Image Build completed'
             }
         }
+        stage('Push Docker Image') {
+            steps {
+                echo 'Pushing Docker Image...'
+                withCredentials([string(credentialsId: 'dockerhub_credentials', variable: 'dockhub_credentials')])  {
+                    sh 'docker login -u ram1uj -p $dockhub_credentials'
+                }
+                sh 'docker push ram1uj/cicd-with-jenkins:latest'
+                echo 'Docker Image Push completed'
+            }
+        }
         
     }
 }
